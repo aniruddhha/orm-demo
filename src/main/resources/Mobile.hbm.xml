@@ -8,7 +8,7 @@
         <id name="mbId" type="long" column="mb_id">
             <generator class="native"/>
         </id>
-        <property name="mbNum" type="string" column="mb_num"/>
+        <property name="mbNum" type="string" column="mb_num" unique="true"/>
         <property name="version" type="int" column="mb_ver"/>
     </class>
 </hibernate-mapping>
