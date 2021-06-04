@@ -9,7 +9,14 @@ import org.springframework.context.ApplicationContext;
 public class OrmDemoApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(OrmDemoApplication.class, args);
+		query(ctx);
+	}
 
+	private static void query(ApplicationContext ctx) {
+
+	}
+
+	private static void mapping(ApplicationContext ctx) {
 		MappingService service = ctx.getBean(MappingService.class);
 		System.out.println("---Crafting Board---");
 		service.craftBoard();
