@@ -1,6 +1,7 @@
 package com.ani.orm;
 
 import com.ani.orm.mapping.MappingService;
+import com.ani.orm.query.BookService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,7 +14,10 @@ public class OrmDemoApplication {
 	}
 
 	private static void query(ApplicationContext ctx) {
+		BookService service = ctx.getBean(BookService.class);
+//		service.methods();
 
+		service.query();
 	}
 
 	private static void mapping(ApplicationContext ctx) {

@@ -57,4 +57,15 @@ public class Book {
     public void setPbDt(LocalDate pbDt) {
         this.pbDt = pbDt;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bkId=" + bkId +
+                ", name='" + name + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", pageCount=" + pageCount +
+                ", pbDt=" + pbDt +
+                '}';
+    }
 }
