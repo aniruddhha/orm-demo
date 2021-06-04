@@ -8,6 +8,9 @@ import java.util.Date;
 @Component
 public class DeviceManager {
 
+//    docker run -d --name=influxdb --p 8086:8086 -v  /tmp/testdata/influx:/root/.influxdbv2 --net=influxdb-telegraf-net quay.io/influxdb/influxdb:latest
+//    docker run -d --name=telegraf -v /mytelegrafconfigsdir/telegraf.conf:/var/lib/influxdb --net=influxdb-telegraf-net telegraf
+
     private final DeviceRepository repository;
 
     public DeviceManager(
