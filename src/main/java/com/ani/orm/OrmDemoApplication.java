@@ -10,19 +10,20 @@ import org.springframework.context.ApplicationContext;
 public class OrmDemoApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(OrmDemoApplication.class, args);
-		query(ctx);
+//		query(ctx);
+		mapping(ctx);
 	}
 
 	private static void query(ApplicationContext ctx) {
 		BookService service = ctx.getBean(BookService.class);
 //		service.methods();
 
-		service.query();
+//		service.query();
 	}
 
 	private static void mapping(ApplicationContext ctx) {
 		MappingService service = ctx.getBean(MappingService.class);
-		System.out.println("---Crafting Board---");
+		/*System.out.println("---Crafting Board---");
 		service.craftBoard();
 		System.out.println("---Crafting Board With Processor---");
 		service.craftBoardWithProcessor();
@@ -37,6 +38,9 @@ public class OrmDemoApplication {
 		System.out.println("---All Chips on Board---");
 		service.findAllChipsOnTheBoard();
 		System.out.println("---Crafting VM---");
-		service.craftVm();
+		service.craftVm();*/
+
+		service.chipsOnTheBoard();
+
 	}
 }

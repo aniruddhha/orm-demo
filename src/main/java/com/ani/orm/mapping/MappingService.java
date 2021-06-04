@@ -139,7 +139,7 @@ public class MappingService {
         processor.setMake("abc");
         processor.setType(1);
 
-        Board board = boardRepository.findById(1L).orElseThrow(RuntimeException::new);
+        Board board = boardRepository.findById(2L).orElseThrow(RuntimeException::new);
         processor.setBoard(board);
 
         processors.add(processor);
@@ -147,5 +147,9 @@ public class MappingService {
         machine.setProcessors(processors);
 
         machineRepository.save(machine);
+    }
+
+    public void chipsOnTheBoard() {
+        chipRepository.chipOnBoard(2L).orElseThrow(RuntimeException::new).forEach(System.out::println);
     }
 }
