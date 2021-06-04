@@ -23,5 +23,7 @@ public class OrmDemoApplication {
 		service.craftBoardWithChips();
 		System.out.println("---Crafting Chip---");
 		service.craftChip();
+		System.out.println("---All Chips on Board---");
+		service.findAllChipsOnTheBoard();
 	}
 }

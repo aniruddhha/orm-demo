@@ -1,6 +1,7 @@
 package com.ani.orm.mapping;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -111,5 +112,13 @@ public class MappingService {
         chip.setPrg(true);
 
         chipRepository.save(chip);
+    }
+
+    @Transactional
+    public void findAllChipsOnTheBoard() {
+        //tx.begin()
+        Board board = boardRepository.findById(1L).orElseThrow(RuntimeException::new);
+        board.getChips().forEach(System.out::println);
+        //tx.commit();
     }
 }
