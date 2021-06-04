@@ -1,6 +1,6 @@
 package com.ani.orm;
 
-import com.ani.orm.springdatajpa.DeviceManager;
+import com.ani.orm.mapping.MappingService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -9,8 +9,15 @@ import org.springframework.context.ApplicationContext;
 public class OrmDemoApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(OrmDemoApplication.class, args);
-		DeviceManager mgr = ctx.getBean(DeviceManager.class);
-		mgr.save();
-		mgr.all();
+
+		MappingService service = ctx.getBean(MappingService.class);
+		System.out.println("---Crafting Board---");
+		service.craftBoard();
+		System.out.println("---Crafting Board With Processor---");
+		service.craftBoardWithProcessor();
+		System.out.println("---Crafting Processor---");
+		service.craftProcessor();
+		System.out.println("---All Processors---");
+		service.findAllProcessors();
 	}
 }
