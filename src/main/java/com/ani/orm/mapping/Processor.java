@@ -1,6 +1,8 @@
 package com.ani.orm.mapping;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Processor {
@@ -13,6 +15,9 @@ public class Processor {
     @OneToOne
     @JoinColumn(name = "brd_id", referencedColumnName = "brdId", updatable = false, nullable = false)
     private Board board;
+
+    @ManyToMany(mappedBy = "processors")
+    private Set<Machine> vms = new HashSet<>();
 
     public Long getPrcId() {
         return prcId;
@@ -44,6 +49,14 @@ public class Processor {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public Set<Machine> getVms() {
+        return vms;
+    }
+
+    public void setVms(Set<Machine> vms) {
+        this.vms = vms;
     }
 
     @Override

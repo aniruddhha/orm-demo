@@ -5,7 +5,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /*
 *  - One To One
@@ -20,15 +22,18 @@ public class MappingService {
     private final BoardRepository boardRepository;
     private final ProcessorRepository processorRepository;
     private final ChipRepository chipRepository;
+    private final MachineRepository machineRepository;
 
     public MappingService(
             BoardRepository boardRepository,
             ProcessorRepository processorRepository,
-            ChipRepository chipRepository
+            ChipRepository chipRepository,
+            MachineRepository machineRepository
     ) {
         this.boardRepository = boardRepository;
         this.processorRepository = processorRepository;
         this.chipRepository = chipRepository;
+        this.machineRepository = machineRepository;
     }
 
     public void craftBoard() {
@@ -120,5 +125,27 @@ public class MappingService {
         Board board = boardRepository.findById(1L).orElseThrow(RuntimeException::new);
         board.getChips().forEach(System.out::println);
         //tx.commit();
+    }
+
+    @Transactional
+    public void craftVm() {
+        Machine machine = new Machine();
+        machine.setMfg("dc");
+        machine.setMfgDt(LocalDate.now());
+
+        Set<Processor> processors = new HashSet<>();
+
+        Processor processor = new Processor();
+        processor.setMake("abc");
+        processor.setType(1);
+
+        Board board = boardRepository.findById(1L).orElseThrow(RuntimeException::new);
+        processor.setBoard(board);
+
+        processors.add(processor);
+
+        machine.setProcessors(processors);
+
+        machineRepository.save(machine);
     }
 }

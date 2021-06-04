@@ -25,5 +25,7 @@ public class OrmDemoApplication {
 		service.craftChip();
 		System.out.println("---All Chips on Board---");
 		service.findAllChipsOnTheBoard();
+		System.out.println("---Crafting VM---");
+		service.craftVm();
 	}
 }
