@@ -19,5 +19,9 @@ public class OrmDemoApplication {
 		service.craftProcessor();
 		System.out.println("---All Processors---");
 		service.findAllProcessors();
+		System.out.println("---Crafting Board With Chips---");
+		service.craftBoardWithChips();
+		System.out.println("---Crafting Chip---");
+		service.craftChip();
 	}
 }

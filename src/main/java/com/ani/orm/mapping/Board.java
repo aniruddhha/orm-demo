@@ -2,6 +2,8 @@ package com.ani.orm.mapping;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Board {
@@ -14,6 +16,9 @@ public class Board {
 
     @OneToOne(mappedBy = "board", cascade = CascadeType.ALL)
     private Processor processor;
+
+    @OneToMany(mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    private List<Chip> chips = new ArrayList<>();
 
     public Long getBrdId() {
         return brdId;
@@ -45,6 +50,14 @@ public class Board {
 
     public void setProcessor(Processor processor) {
         this.processor = processor;
+    }
+
+    public List<Chip> getChips() {
+        return chips;
+    }
+
+    public void setChips(List<Chip> chips) {
+        this.chips = chips;
     }
 
     @Override

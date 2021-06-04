@@ -3,6 +3,8 @@ package com.ani.orm.mapping;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 *  - One To One
@@ -16,13 +18,16 @@ public class MappingService {
 
     private final BoardRepository boardRepository;
     private final ProcessorRepository processorRepository;
+    private final ChipRepository chipRepository;
 
     public MappingService(
             BoardRepository boardRepository,
-            ProcessorRepository processorRepository
+            ProcessorRepository processorRepository,
+            ChipRepository chipRepository
     ) {
         this.boardRepository = boardRepository;
         this.processorRepository = processorRepository;
+        this.chipRepository = chipRepository;
     }
 
     public void craftBoard() {
@@ -65,5 +70,46 @@ public class MappingService {
 
     public void findBoardFromProcessor() {
         // afternoon
+    }
+
+    public void craftBoardWithChips() {
+
+        Board board = new Board();
+        board.setMfgDt(LocalDate.now());
+        board.setMfg("nnn");
+
+        List<Chip> chips = new ArrayList<>();
+        Chip chip1 = new Chip();
+        chip1.setCompatibility("un");
+        chip1.setPrg(true);
+        chip1.setBoard(board);
+        chips.add(chip1);
+
+        Chip chip2 = new Chip();
+        chip2.setCompatibility("na");
+        chip2.setPrg(false);
+        chip2.setBoard(board);
+        chips.add(chip2);
+
+        Chip chip3 = new Chip();
+        chip3.setCompatibility("ab");
+        chip3.setPrg(true);
+        chip3.setBoard(board);
+        chips.add(chip3);
+
+        board.setChips(chips);
+
+        boardRepository.save(board);
+    }
+
+    public void craftChip() {
+        Board board = boardRepository.findById(1L).orElseThrow(RuntimeException::new);
+
+        Chip chip = new Chip();
+        chip.setBoard(board);
+        chip.setCompatibility("un");
+        chip.setPrg(true);
+
+        chipRepository.save(chip);
     }
 }
